@@ -1,0 +1,96 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar a:hover {
+    color: #ddd;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+.left-side {
+    margin: 10px 10px 0 20px;
+    flex: 2;
+    overflow: auto;
+}
+
+.right-side {
+    margin: 10px 20px 0 10px;
+    flex: 1;
+    overflow: auto;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 3;
+    overflow: auto;
+}
+
+.materias-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mat-card {
+    height: 90%;
+    background-color: #F6E086 ;
+}
+
+.btn-tema {
+    background-color: #F9CF38;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Adiciona sombra */
+}
+
+.btn-tema:hover {
+    background-color: rgb(92, 92, 242);
+    color: white;
+}
+
+.btn-tema:focus {
+    background-color: rgb(0, 0, 255);
+    color: white;
+    outline: none;
+}
+   
+button {
+    width: 100%;
+}
+
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    color: #003A69;
+}

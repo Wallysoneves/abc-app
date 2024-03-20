@@ -9,11 +9,20 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { HomeComponent } from './pages/home/home.component';
+import { EditorComponent } from './pages/editor/editor.component';
+import { TarefasComponent } from './pages/tarefas/tarefas.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    HomeComponent,
+    EditorComponent,
+    TarefasComponent,
+    LoginComponent
   ],
   imports: [
       BrowserModule
@@ -23,6 +32,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     , MatButtonModule
     , MatIconModule
     , CKEditorModule
+    , MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

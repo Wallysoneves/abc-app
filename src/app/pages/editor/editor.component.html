@@ -1,0 +1,28 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+
+    <!-- CKEditor no lado esquerdo -->
+    <div class="left-side">
+        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+    </div>
+   
+    <!-- Card no lado direito -->
+    <div class="right-side">
+       <div class="card">
+        <mat-card>
+            <mat-card-header>
+               <mat-card-title>Matérias</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               <div class="materias-container">
+                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('Português')">Português</button>
+                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('Matemática')">Matemática</button>
+                 <!-- Adicione mais botões conforme necessário -->
+               </div>
+            </mat-card-content>
+           </mat-card>
+           
+       </div>
+    </div>
+</div>
