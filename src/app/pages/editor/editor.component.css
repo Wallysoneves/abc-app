@@ -23,7 +23,9 @@
 .container {
     display: flex;
     height: calc(100vh - 60px);
+    padding-top: 60px;
 }
+
 
 .left-side {
     margin: 10px 10px 0 20px;
@@ -47,6 +49,10 @@
     overflow: auto;
 }
 
+.mat-card-content {
+    height: 100%;
+}
+
 .materias-container {
     display: flex;
     flex-direction: column;
@@ -54,7 +60,7 @@
 }
 
 .mat-card {
-    height: 90%;
+    height: 85vh;
     background-color: #F6E086 ;
 }
 
@@ -93,4 +99,8 @@ mat-card-header {
     display: flex;
     justify-content: center;
     color: #003A69;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 85vh;
 }

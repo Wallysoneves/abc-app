@@ -14,6 +14,7 @@ import { EditorComponent } from './pages/editor/editor.component';
 import { TarefasComponent } from './pages/tarefas/tarefas.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatCardModule } from '@angular/material/card';
+import { MateriaService } from './providers/materia.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { MatCardModule } from '@angular/material/card';
     , CKEditorModule
     , MatCardModule
   ],
-  providers: [],
+  providers: [MateriaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
