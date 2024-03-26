@@ -100,6 +100,12 @@ mat-card-header {
     justify-content: center;
     color: #003A69;
 }
+.container {
+  
+    background-image: url('/assets/img/fundo.png');
+    background-size: cover;
+    padding: 20px;
+}
 
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 85vh;

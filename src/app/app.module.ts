@@ -23,7 +23,8 @@ import { MateriaService } from './providers/materia.service';
     HomeComponent,
     EditorComponent,
     TarefasComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
       BrowserModule

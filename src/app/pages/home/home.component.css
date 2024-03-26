@@ -1,0 +1,35 @@
+
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+    background-image: url('/assets/img/fundo.png');
+    background-size: cover;
+    padding: 20px;
+}
+
+.left-side {
+    flex: 1;
+    }
+
+
+.right-side {
+    flex: 1;
+}
+
+
+.card {
+    
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+    }
+
+    .left-side, .right-side {
+        width: 100%;
+    }
+}
