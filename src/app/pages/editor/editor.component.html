@@ -4,7 +4,7 @@
 
     <!-- CKEditor no lado esquerdo -->
     <div class="left-side">
-        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+        <ckeditor [editor]="Editor" data="<p> MOISES </p> <br> <p> MOISES </p>" (change)="onChange($event)"></ckeditor>
     </div>
    
     <!-- Card no lado direito -->
@@ -15,10 +15,8 @@
                <mat-card-title>Matérias</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-               <div class="materias-container">
-                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('Português')">Português</button>
-                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('Matemática')">Matemática</button>
-                 <!-- Adicione mais botões conforme necessário -->
+               <div class="materias-container" *ngFor="let materia of materias">
+                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('materia.nome')">{{materia.nome}}</button>
                </div>
             </mat-card-content>
            </mat-card>

@@ -1,6 +1,11 @@
 /* styles.css */
 
 /* Estilos para a Navbar */
+
+body {
+    padding-top: 64px; /* Ajuste este valor conforme a altura da sua navbar */
+}
+
 .mat-toolbar {
     background-color: #F9CF38;
     color: #003A69;
@@ -8,27 +13,30 @@
     justify-content: space-around;
     cursor: pointer;
     user-select: none;
+    position: fixed; /* Adiciona a posição fixa */
+    top: 0; /* Posiciona no topo da página */
+    width: 100%; /* Garante que a navbar se estenda por toda a largura da página */
+    z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
 }
 
 .mat-toolbar span {
-    position: relative; /* Mantém a posição relativa para que a pseudo-classe ::after possa ser posicionada corretamente */
-    padding: 0;
+    position: relative;
 }
 
 .mat-toolbar span::after {
     content: "";
     display: block;
-    width: 0; /* Inicialmente, a barra de sublinhado não tem largura */
-    height: 4px; /* Define a altura da barra de sublinhado */
-    background-color: blue; /* Define a cor da barra de sublinhado */
+    width: 0;
+    height: 4px;
+    background-color: blue;
     transition: width 0.3s ease;
     position: absolute;
-    bottom: 0; /* Posiciona a barra de sublinhado abaixo do item */
+    bottom: 0;
     left: 0;
     right: 0;
     margin: 0 auto;
 }
 
 .mat-toolbar span.active::after {
-    width: auto; /* Ajusta a largura para que a barra de sublinhado se ajuste ao conteúdo do item quando ativo */
+    width: auto;
 }
