@@ -24,6 +24,8 @@
     display: flex;
     height: calc(100vh - 60px);
     padding-top: 60px;
+    background-image: url('/assets/img/fundo.png');
+    background-size: cover;
 }
 
 
@@ -99,12 +101,6 @@ mat-card-header {
     display: flex;
     justify-content: center;
     color: #003A69;
-}
-.container {
-  
-    background-image: url('/assets/img/fundo.png');
-    background-size: cover;
-    padding: 20px;
 }
 
 :host ::ng-deep .ck-editor__editable_inline {
