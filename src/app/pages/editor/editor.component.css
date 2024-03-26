@@ -96,7 +96,7 @@ mat-card-header {
 }
 
 .container {
-    background-image: url('fundo.png');
+    background-image: url('/assets/img/fundo.png');
     background-size: cover;
     padding: 20px;
 }
