@@ -15,6 +15,9 @@ import { TarefasComponent } from './pages/tarefas/tarefas.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { MateriaService } from './providers/materia.service';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { MateriaService } from './providers/materia.service';
     , MatIconModule
     , CKEditorModule
     , MatCardModule
+    , MatFormFieldModule
+    , MatInputModule
+    , FormsModule
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]

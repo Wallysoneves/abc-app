@@ -4,7 +4,7 @@
 
     <!-- CKEditor no lado esquerdo -->
     <div class="left-side">
-        <ckeditor [editor]="Editor" data="<p> MOISES </p> <br> <p> MOISES </p>" (change)="onChange($event)"></ckeditor>
+        <ckeditor [editor]="Editor" data="{{dadosCkEditor}}" (change)="onChange($event)"></ckeditor>
     </div>
    
     <!-- Card no lado direito -->
