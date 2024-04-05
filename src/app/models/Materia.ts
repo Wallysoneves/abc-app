@@ -1,4 +1,6 @@
 export interface Materia {
     id: number,
-    nome: string
+    nome: string,
+    anos: string[]; 
+    aberto?: boolean;
 }

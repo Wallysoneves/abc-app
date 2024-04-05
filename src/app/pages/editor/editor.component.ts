@@ -78,4 +78,8 @@ export class EditorComponent implements OnInit {
     imageElement.style.height = '50px';
     this.dadosCkEditor += `<p><img src="${imageElement.src}" style="width: ${imageElement.style.width}; height: ${imageElement.style.height}"></p>`;
   }
+  toggleAnos(materia: Materia) {
+    materia.aberto = !materia.aberto;
+  }
+
 }

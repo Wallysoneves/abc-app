@@ -11,10 +11,10 @@ export class MateriaService {
   constructor() { }
 
   getMaterias(): Materia[] {
-    
     return this.nomes.map((nome: any, index: any) => ({
       id: index + 1,
-      nome: nome
-   }));
+      nome: nome,
+      anos: ['1º Ano', '2º Ano', '3º Ano', '4º Ano'] 
+    }));
   }
 }

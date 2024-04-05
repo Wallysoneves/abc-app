@@ -26,6 +26,7 @@
     padding-top: 60px;
     background-image: url('/assets/img/fundo.png');
     background-size: cover;
+    
 }
 
 
@@ -53,31 +54,50 @@
 
 .mat-card-content {
     height: 100%;
+    margin-top: 50px;
+}
+
+mat-card-title {
+    width: 100%;
+    color: #F9CF38;
+    background-color: rgb(1, 1, 116); /* Cor de fundo */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 13px 40px; /* Espaçamento interno */
+    width: 290px;
+    margin: 5px auto;
+    display: flex;
+    justify-content: center;
+    
+    
+
 }
 
 .materias-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    margin-top: 0;
+    margin: 59px 5px;
+   
+    
 }
 
 .mat-card {
-    height: 85vh;
+    height: auto;
     background-color: #F6E086 ;
+    padding: 0 15px; /* Espaçamento interno */
+   
+    
+    
 }
 
 .btn-tema {
     background-color: #F9CF38;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Adiciona sombra */
 }
@@ -106,3 +126,15 @@ mat-card-header {
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 85vh;
 }
+
+  .ano {
+    background-color: #ebc747; /* Cor de fundo */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 3px 15px; /* Espaçamento interno */
+    margin-bottom: 10px;
+    
+    width: 270px;
+    margin: 5px auto;
+    font-size: 10px;
+    
+  }
