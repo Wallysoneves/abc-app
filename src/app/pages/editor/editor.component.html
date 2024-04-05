@@ -15,12 +15,16 @@
                <mat-card-title>Matérias</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-               <div class="materias-container" *ngFor="let materia of materias">
-                 <button class="btn-tema" mat-raised-button (click)="selecionarMateria('materia.nome')">{{materia.nome}}</button>
-               </div>
+                <div class="materias-container" *ngFor="let materia of materias">
+                    <button class="btn-tema" mat-raised-button (click)="toggleAnos(materia)">{{materia.nome}}</button>
+                    <div *ngIf="materia.aberto" class="anos-container">
+                        <div class="ano" *ngFor="let ano of materia.anos">
+                            <button mat-button>{{ano}}</button>
+                        </div>    
+                    </div>
+                </div>
             </mat-card-content>
            </mat-card>
-           
        </div>
     </div>
 </div>
