@@ -12,30 +12,44 @@ import { MateriaService } from 'src/app/providers/materia.service';
 export class EditorComponent implements OnInit {
   
   dadosCkEditor = ``;
+  titulo: string = '';
   editor: any; 
   Editor = ClassicEditor;
   materias: Materia[] = [];
+  materiaSelecionada: Materia | undefined;
 
   constructor(private materiaService: MateriaService) { }
 
   ngOnInit(): void {
+    this.titulo = 'Matéria';
     this.materias = this.materiaService.getMaterias();
     this.dadosCkEditor = `
-      <div>
-        <h1>Cabeçalho da Escola</h1>
-        <p>Professora: [Nome da Professora]</p>
-        <p>Aluno: [Nome do Aluno]</p>
-        <p>Ano: [Ano]</p>
-        <hr>
-        <h2>Conteúdo da Tarefa</h2>
-        <p>Aqui vai o conteúdo da tarefa...</p>
-        <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul>
-        <p>Mais detalhes sobre a tarefa...</p>
+      
+    <div class="header-container">
+    <div class="logo-container">
+      <img src="caminho/para/sua/logo.png" alt="Logo da Escola">
+    </div>
+    <div class="header-content">
+      <div class="header-text">
+        <label for="escola">ESCOLA:</label>
+        <span>Nome da Escola</span>
       </div>
+      <div class="header-text">
+        <label for="professor">PROFESSOR(A):</label>
+        <span>Nome do Professor(a)</span>
+      </div>
+      <div class="header-text">
+        <label for="serie">SÉRIE:</label>
+        <span>Série</span>
+      </div>
+      <div class="header-text">
+        <label for="aluno">ALUNO:</label>
+        <span>Nome do Aluno</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div id="ckeditor"></div>
     `;
     this.addImageToEditor();
   }
@@ -79,7 +93,9 @@ export class EditorComponent implements OnInit {
     this.dadosCkEditor += `<p><img src="${imageElement.src}" style="width: ${imageElement.style.width}; height: ${imageElement.style.height}"></p>`;
   }
   toggleAnos(materia: Materia) {
+    this.titulo = 'Série';
     materia.aberto = !materia.aberto;
+    this.materiaSelecionada = materia;
   }
 
 }

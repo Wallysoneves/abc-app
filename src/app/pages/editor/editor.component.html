@@ -1,30 +1,28 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container">
-
     <!-- CKEditor no lado esquerdo -->
     <div class="left-side">
         <ckeditor [editor]="Editor" data="{{dadosCkEditor}}" (change)="onChange($event)"></ckeditor>
     </div>
-   
+
     <!-- Card no lado direito -->
     <div class="right-side">
-       <div class="card">
         <mat-card>
             <mat-card-header>
-               <mat-card-title>Matérias</mat-card-title>
+                <mat-card-title>{{titulo}}</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content *ngIf="!materiaSelecionada">
                 <div class="materias-container" *ngFor="let materia of materias">
                     <button class="btn-tema" mat-raised-button (click)="toggleAnos(materia)">{{materia.nome}}</button>
-                    <div *ngIf="materia.aberto" class="anos-container">
-                        <div class="ano" *ngFor="let ano of materia.anos">
-                            <button mat-button>{{ano}}</button>
-                        </div>    
-                    </div>
                 </div>
             </mat-card-content>
-           </mat-card>
-       </div>
+
+            <mat-card-content *ngIf="materiaSelecionada?.aberto">
+                <div class="materias-container" *ngFor="let anos of materiaSelecionada?.anos">
+                    <button class="btn-tema" mat-raised-button>{{anos}}</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>

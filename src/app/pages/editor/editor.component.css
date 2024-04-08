@@ -22,13 +22,14 @@
 
 .container {
     display: flex;
+    flex-wrap: wrap;
+    max-width: 100%; /* Define a largura máxima para evitar transbordamento */
+    overflow-x: hidden; /* Esconde a barra de rolagem horizontal se houver transbordamento */
     height: calc(100vh - 60px);
     padding-top: 60px;
     background-image: url('/assets/img/fundo.png');
     background-size: cover;
-    
 }
-
 
 .left-side {
     margin: 10px 10px 0 20px;
@@ -39,37 +40,30 @@
 .right-side {
     margin: 10px 20px 0 10px;
     flex: 1;
-    overflow: auto;
-}
-
-.right-side {
+    overflow: auto; /* Adiciona barra de rolagem quando o conteúdo ultrapassa a altura */
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centraliza os elementos na horizontal */
 }
 
-.card {
-    flex: 3;
-    overflow: auto;
+.right-side mat-card {
+    height: 90vh; /* Define a altura do mat-card */
+    width: 100%; /* Define a largura do mat-card para ocupar todo o espaço disponível */
+    max-width: 600px; /* Define um valor máximo para a largura do mat-card */
+    box-sizing: border-box; /* Garante que a largura total do mat-card inclua padding e borda.s */
+    overflow-y: auto;
 }
 
-.mat-card-content {
-    height: 100%;
-    margin-top: 50px;
-}
-
-mat-card-title {
+.mat-card-title {
     width: 100%;
     color: #F9CF38;
-    background-color: rgb(1, 1, 116); /* Cor de fundo */
-    border-radius: 20px; /* Bordas arredondadas */
-    padding: 13px 40px; /* Espaçamento interno */
+    background-color: rgb(1, 1, 116);
+    border-radius: 20px;
+    padding: 13px 40px;
     width: 290px;
     margin: 5px auto;
     display: flex;
     justify-content: center;
-    
-    
-
 }
 
 .materias-container {
@@ -77,17 +71,13 @@ mat-card-title {
     flex-direction: column;
     margin-top: 0;
     margin: 59px 5px;
-   
-    
 }
 
 .mat-card {
     height: auto;
-    background-color: #F6E086 ;
-    padding: 0 15px; /* Espaçamento interno */
-   
-    
-    
+    max-height: 90vh;
+    background-color: #F6E086;
+    padding: 0 15px;
 }
 
 .btn-tema {
@@ -98,8 +88,8 @@ mat-card-title {
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Adiciona sombra */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .btn-tema:hover {
@@ -112,7 +102,7 @@ mat-card-title {
     color: white;
     outline: none;
 }
-   
+
 button {
     width: 100%;
 }
@@ -121,20 +111,23 @@ mat-card-header {
     display: flex;
     justify-content: center;
     color: #003A69;
+    margin: 18px 0 !important;
+}
+
+mat-card-content {
+    margin-bottom: 16px !important;
 }
 
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 85vh;
 }
 
-  .ano {
-    background-color: #ebc747; /* Cor de fundo */
-    border-radius: 20px; /* Bordas arredondadas */
-    padding: 3px 15px; /* Espaçamento interno */
+.ano {
+    background-color: #ebc747;
+    border-radius: 20px;
+    padding: 3px 15px;
     margin-bottom: 10px;
-    
     width: 270px;
     margin: 5px auto;
     font-size: 10px;
-    
-  }
+}
