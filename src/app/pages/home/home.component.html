@@ -1,16 +1,45 @@
 <app-nav-bar></app-nav-bar>
 
-
 <div class="container">
-   
     <div class="left-side">
         <img src="/assets/img/abcHome.png" alt="Imagem" width="100%" height="auto;">
     </div>
 
-    
     <div class="right-side">
-        <div class="card">
-            
-        </div>
+        <div class="carousel-container">
+            <div class="carousel">
+                
+                <div class="carousel-indicators">
+                    <span class="indicator" (click)="selectSlide(0)" [class.active]="currentIndex === 0"></span>
+                    <span class="indicator" (click)="selectSlide(1)" [class.active]="currentIndex === 1"></span>
+                    <span class="indicator" (click)="selectSlide(2)" [class.active]="currentIndex === 2"></span>
+                </div>
+
+                <div class="carousel-item" [class.active]="currentIndex === 0">
+                    <p>  Bem-vindo ao ABC Edição de Tarefas!
+                         Aqui, os professores podem facilmente criar e personalizar
+                         duas tarefas de forma intuitiva e eficiente, proporcionando
+                         uma experiência de edição simplificada e dinâmica.
+                    </p>
+                </div>
+                <div class="carousel-item" [class.active]="currentIndex === 1">
+                    <p>  Fique ligado em nossas novidades!
+                         Este ambiente foi projetado para fornecer aos professores uma
+                         plataforma versátil para a criação de tarefas educacionais.
+                         Com ferramentas intuitivas e uma interface amigável.
+                    </p>
+                </div>
+                <div class="carousel-item" [class.active]="currentIndex === 2">
+                    <p>  Inovacao para o seu dia a dia !
+                         No Canvas de Edição de Tarefas, os professores têm controle
+                         total sobre o conteúdo e o formato das atividades.
+                         Com a liberdade de personalizar cada detalhe, para criar tarefas.
+                    </p>
+                </div>
+                <div class="fixed-message">
+                    <p>Editor de Tarefas</p>
+                </div>
+            </div>
+        </div>    
     </div>
 </div>
