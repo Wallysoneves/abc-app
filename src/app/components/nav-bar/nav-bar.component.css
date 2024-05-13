@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* Estilos para a Navbar */
 
 body {
@@ -21,22 +19,27 @@ body {
 
 .mat-toolbar span {
     position: relative;
+    color: #FFFFFF; /* Cor do texto branca */
 }
 
-.mat-toolbar span::after {
+.mat-toolbar span::before {
     content: "";
     display: block;
-    width: 0;
-    height: 4px;
-    background-color: blue;
-    transition: width 0.3s ease;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #003A69; /* Cor da borda igual à cor da barra */
+    border-bottom-left-radius: 50%; /* Borda arredondada apenas na parte inferior esquerda */
+    border-bottom-right-radius: 50%; /* Borda arredondada apenas na parte inferior direita */
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Faz com que a borda fique atrás do texto */
+    visibility: hidden; /* Esconde o pseudo-elemento por padrão */
 }
 
-.mat-toolbar span.active::after {
-    width: auto;
+.mat-toolbar span.active::before {
+    height: 80px;
+    width: 80px;
+    visibility: visible;
+    background-color: #003A69;
 }

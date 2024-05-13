@@ -120,6 +120,7 @@ mat-card-content {
 
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 85vh;
+    max-height: 85vh;
 }
 
 .ano {

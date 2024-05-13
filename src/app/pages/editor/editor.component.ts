@@ -17,61 +17,79 @@ export class EditorComponent implements OnInit {
   Editor = ClassicEditor;
   materias: Materia[] = [];
   materiaSelecionada: Materia | undefined;
+  config = {
+    toolbar: [
+       'Cut', 'Copy', 'PasteText', '|',
+       'Undo', 'Redo', '|',
+       'Bold', 'Italic', 'Underline', 'Strike', 'superscript', 'subscript', '|',
+       'Link', 'Unlink', '|',
+       'NumberedList', 'BulletedList', '|',
+       'Outdent', 'Indent', '|',
+       'Blockquote', '|',
+       'ImageUpload', 'MediaEmbed', '|',
+       'Table', '|',
+       'ExportPdf'
+    ]
+   };
 
   constructor(private materiaService: MateriaService) { }
 
   ngOnInit(): void {
+
+    const editorElement = document.querySelector('#editor');
+    if (editorElement instanceof HTMLElement) {
+       ClassicEditor
+         .create(editorElement, {
+           plugins: [ /* plugins */ ],
+           toolbar: [ /* toolbar items */ ],
+         })
+         .then(editor => {
+           this.editor = editor;
+           // Outras configurações e inicializações
+         })
+         .catch(error => {
+           console.error(error);
+         });
+      }
+    
     this.titulo = 'Matéria';
     this.materias = this.materiaService.getMaterias();
     this.dadosCkEditor = `
-      
-    <div class="header-container">
-    <div class="logo-container">
-      <img src="caminho/para/sua/logo.png" alt="Logo da Escola">
+    <!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade de Matemática</title>
+</head>
+<body>
+    <div>
+        Escola: _____________________________________________________________ <br>
+        Data: __________________________ Turma: ___________________________ <br>
+        Aluno: _____________________________________________________________
     </div>
-    <div class="header-content">
-      <div class="header-text">
-        <label for="escola">ESCOLA:</label>
-        <span>Nome da Escola</span>
-      </div>
-      <div class="header-text">
-        <label for="professor">PROFESSOR(A):</label>
-        <span>Nome do Professor(a)</span>
-      </div>
-      <div class="header-text">
-        <label for="serie">SÉRIE:</label>
-        <span>Série</span>
-      </div>
-      <div class="header-text">
-        <label for="aluno">ALUNO:</label>
-        <span>Nome do Aluno</span>
-      </div>
+    <h1>ATIVIDADE DE MATEMÁTICA</h1>
+    <p>Resolva os seguintes problemas:</p>
+    <div>
+        <img src="soma.png" alt="Símbolo de Soma"> 
+        5 + 3 = _____
     </div>
-  </div>
-  <hr>
-  <div id="ckeditor"></div>
-    `;
-    this.addImageToEditor();
-  }
+    <div>
+        <img src="subtracao.png" alt="Símbolo de Subtração">
+        10 - 4 = _____
+    </div>
+    <div>
+        <img src="multiplicacao.png" alt="Símbolo de Multiplicação">
+        3 x 6 = _____
+    </div>
+    <div>
+        <img src="divisao.png" alt="Símbolo de Divisão">
+        12 ÷ 2 = _____
+    </div>
+</body>
+</html>
 
-  ngAfterViewInit() {
-    const editorElement = document.getElementById('ckeditor');
-    if (editorElement) {
-      ClassicEditor
-        .create(editorElement, {
-          // Configurações adicionais do CKEditor, se necessário
-        })
-        .then(editor => {
-          this.editor = editor;
-          console.log('CKEditor initialized');
-          this.addImageToEditor(); // Adiciona a imagem ao CKEditor
-        })
-        .catch(error => {
-          console.error('Error initializing CKEditor: ', error);
-        });
-    } else {
-      console.error('Element with id "ckeditor" not found.');
-    }
+
+    `;
   }
 
   selecionarMateria(materia: string) {
@@ -84,18 +102,16 @@ export class EditorComponent implements OnInit {
     this.dadosCkEditor = data;
    }
 
-   addImageToEditor() {
-    const imageElement = new Image();
-    imageElement.src = 'https://ciclovivo.com.br/wp-content/uploads/2018/10/iStock-536613027-1024x683.jpg'; // Substitua pelo URL da imagem que você deseja exibir
-    imageElement.draggable = true; // Permite que a imagem seja arrastada
-    imageElement.style.width = '50px'; // Ajusta o tamanho da imagem conforme necessário
-    imageElement.style.height = '50px';
-    this.dadosCkEditor += `<p><img src="${imageElement.src}" style="width: ${imageElement.style.width}; height: ${imageElement.style.height}"></p>`;
-  }
   toggleAnos(materia: Materia) {
     this.titulo = 'Série';
     materia.aberto = !materia.aberto;
     this.materiaSelecionada = materia;
   }
+
+  ngOnDestroy() {
+    if (this.editor) {
+       this.editor.destroy();
+    }
+   }
 
 }
