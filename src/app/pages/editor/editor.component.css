@@ -54,7 +54,8 @@
     overflow-y: auto;
 }
 
-.mat-card-title {
+.mat-card-title,
+.btn-voltar{
     width: 100%;
     color: #F9CF38;
     background-color: rgb(1, 1, 116);
