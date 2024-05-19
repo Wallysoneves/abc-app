@@ -54,8 +54,7 @@
     overflow-y: auto;
 }
 
-.mat-card-title,
-.btn-voltar{
+.mat-card-title {
     width: 100%;
     color: #F9CF38;
     background-color: rgb(1, 1, 116);
@@ -67,7 +66,9 @@
     justify-content: center;
 }
 
-.materias-container {
+
+.materias-container,
+.mat-card-footer {
     display: flex;
     flex-direction: column;
     margin-top: 0;
@@ -81,7 +82,20 @@
     padding: 0 15px;
 }
 
-.btn-tema {
+.btn-voltar{
+    background-color: rgb(1, 1, 116);
+    color: #F9CF38;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.btn-tema{
     background-color: #F9CF38;
     color: white;
     border: none;
@@ -93,12 +107,14 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.btn-tema:hover {
+.btn-tema:hover,
+.btn-voltar:hover {
     background-color: rgb(92, 92, 242);
     color: white;
 }
 
-.btn-tema:focus {
+.btn-tema:focus,
+.btn-voltar:hover {
     background-color: rgb(0, 0, 255);
     color: white;
     outline: none;
@@ -115,7 +131,7 @@ mat-card-header {
     margin: 18px 0 !important;
 }
 
-mat-card-content {
+mat-card-content{
     margin-bottom: 16px !important;
 }
 

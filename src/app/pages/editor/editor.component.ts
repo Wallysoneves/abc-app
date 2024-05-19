@@ -3,6 +3,7 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Materia } from 'src/app/models/Materia';
 import { MateriaService } from 'src/app/providers/materia.service';
+import { TarefaService } from 'src/app/providers/tarefa.service';
 
 @Component({
   selector: 'app-editor',
@@ -17,6 +18,7 @@ export class EditorComponent implements OnInit {
   Editor = ClassicEditor;
   materias: Materia[] = [];
   materiaSelecionada: Materia | undefined;
+  tarefas: { titulo: number, ano: string }[] = [];
   config = {
     toolbar: [
        'Cut', 'Copy', 'PasteText', '|',
@@ -32,65 +34,15 @@ export class EditorComponent implements OnInit {
     ]
    };
 
-  constructor(private materiaService: MateriaService) { }
+  constructor(
+    private materiaService: MateriaService, 
+    private tarefaService: TarefaService) 
+    { }
 
-  ngOnInit(): void {
-
-    const editorElement = document.querySelector('#editor');
-    if (editorElement instanceof HTMLElement) {
-       ClassicEditor
-         .create(editorElement, {
-           plugins: [ /* plugins */ ],
-           toolbar: [ /* toolbar items */ ],
-         })
-         .then(editor => {
-           this.editor = editor;
-           // Outras configurações e inicializações
-         })
-         .catch(error => {
-           console.error(error);
-         });
-      }
-    
-    this.titulo = 'Matéria';
-    this.materias = this.materiaService.getMaterias();
-    this.dadosCkEditor = `
-    <!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Atividade de Matemática</title>
-</head>
-<body>
-    <div>
-        Escola: _____________________________________________________________ <br>
-        Data: __________________________ Turma: ___________________________ <br>
-        Aluno: _____________________________________________________________
-    </div>
-    <h1>ATIVIDADE DE MATEMÁTICA</h1>
-    <p>Resolva os seguintes problemas:</p>
-    <div>
-        <img src="soma.png" alt="Símbolo de Soma"> 
-        5 + 3 = _____
-    </div>
-    <div>
-        <img src="subtracao.png" alt="Símbolo de Subtração">
-        10 - 4 = _____
-    </div>
-    <div>
-        <img src="multiplicacao.png" alt="Símbolo de Multiplicação">
-        3 x 6 = _____
-    </div>
-    <div>
-        <img src="divisao.png" alt="Símbolo de Divisão">
-        12 ÷ 2 = _____
-    </div>
-</body>
-</html>
-
-
-    `;
-  }
+    ngOnInit(): void {
+      this.titulo = 'Matéria';
+      this.materias = this.materiaService.getMaterias();
+    }
 
   selecionarMateria(materia: string) {
     console.log(`Materia selecionada: ${materia}`);
@@ -106,6 +58,26 @@ export class EditorComponent implements OnInit {
     this.titulo = 'Série';
     materia.aberto = !materia.aberto;
     this.materiaSelecionada = materia;
+  }
+
+  carregarTarefa(tarefa: { titulo: number, ano: string }) {
+    if (this.materiaSelecionada) {
+      this.tarefaService.getTarefaHtml(this.materiaSelecionada.id, tarefa.ano).subscribe(html => {
+        this.dadosCkEditor = html;
+      }, error => {
+        console.error('Erro ao carregar a tarefa:', error);
+      });
+    }
+  }
+
+  voltar() {
+    if (this.titulo === 'Tarefas') {
+      this.titulo = 'Série';
+      this.tarefas = [];
+    } else if (this.titulo === 'Série') {
+      this.titulo = 'Matéria';
+      this.materiaSelecionada = undefined;
+    }
   }
 
   ngOnDestroy() {

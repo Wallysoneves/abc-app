@@ -18,6 +18,7 @@ import { MateriaService } from './providers/materia.service';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FormsModule } from '@angular/forms';
     , MatFormFieldModule
     , MatInputModule
     , FormsModule
+    , HttpClientModule
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]
