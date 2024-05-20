@@ -4,12 +4,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { EditorComponent } from './pages/editor/editor.component';
 import { TarefasComponent } from './pages/tarefas/tarefas.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'editor', component: EditorComponent },
   { path: 'tarefas', component: TarefasComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'cabecalho', component: CabecalhoComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para 'home' por padrão
  ];
 

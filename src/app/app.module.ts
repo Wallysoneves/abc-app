@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     EditorComponent,
     TarefasComponent,
     LoginComponent,
+    CabecalhoComponent,
     
   ],
   imports: [
