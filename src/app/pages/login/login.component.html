@@ -1,7 +1,6 @@
 <div class="container">
     <app-nav-bar></app-nav-bar>
 
-
     <div class="main-login">
         <div class="card-login">
             <div class="textfield">
@@ -10,17 +9,47 @@
             </div>
             <div class="textfield">
                 <label for="senha">Senha</label>
-
                 <input type="password" placeholder="Senha" name="senha">
             </div>
             <button class="button-login">Login</button>
-                <div class="dividir">
-                    <div></div>
-                    <span>or</span>
-                    <div></div>
-                </div>
-            <button class="button-cadastrar">Cadastre-se</button>
+            <div class="dividir">
+                <div></div>
+                <span>or</span>
+                <div></div>
+            </div>
+            <button class="button-cadastrar" (click)="toggleCadastroForm()">Cadastre-se</button>
         </div>
     </div>
 
+    <!-- Formulário de Cadastro -->
+    <div *ngIf="showCadastroForm" class="overlay">
+        <div class="cadastro-form">
+            <h2>Cadastre-se</h2>
+            <div class="textfield">
+                <label for="nome">Nome</label>
+                <input type="text" placeholder="Nome" name="nome">
+            </div>
+            <div class="textfield">
+                <label for="login">Login</label>
+                <input type="text" placeholder="Login" name="login">
+            </div>
+            <div class="textfield">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email" name="email">
+            </div>
+            <div class="textfield">
+                <label for="senha">Senha</label>
+                <input type="password" placeholder="Senha" name="senha">
+            </div>
+            <div class="textfield">
+                <label for="tipoUsuario">Tipo de Usuário</label>
+                <select name="tipoUsuario">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+            <button class="button-cadastrar" (click)="submitCadastroForm()">Cadastrar</button>
+            <button class="button-sair" (click)="toggleCadastroForm()">Sair</button>
+        </div>
+    </div>
 </div>

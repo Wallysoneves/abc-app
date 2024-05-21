@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +9,13 @@ import { merge } from 'rxjs';
 export class LoginComponent implements OnInit {
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
+  showCadastroForm = false; // Variável para controlar a exibição do formulário de cadastro
 
   errorMessage = '';
 
-  constructor() {
-   }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   updateErrorMessage() {
     if (this.email.hasError('required')) {
@@ -29,4 +27,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  toggleCadastroForm() {
+    this.showCadastroForm = !this.showCadastroForm; // Alterna entre mostrar e ocultar o formulário de cadastro
+  }
+
+  submitCadastroForm() {
+    // Lógica para submeter o formulário de cadastro
+    console.log('Formulário de cadastro submetido');
+  }
 }
