@@ -47,7 +47,8 @@
 }
 
 .right-side mat-card {
-    height: 90vh; /* Define a altura do mat-card */
+    min-height: 88vh;
+    max-height: 88vh;
     width: 100%; /* Define a largura do mat-card para ocupar todo o espaço disponível */
     max-width: 600px; /* Define um valor máximo para a largura do mat-card */
     box-sizing: border-box; /* Garante que a largura total do mat-card inclua padding e borda.s */
