@@ -18,6 +18,8 @@ import { MateriaService } from './providers/materia.service';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     EditorComponent,
     TarefasComponent,
     LoginComponent,
+    CabecalhoComponent,
     
   ],
   imports: [
@@ -41,6 +44,7 @@ import { FormsModule } from '@angular/forms';
     , MatFormFieldModule
     , MatInputModule
     , FormsModule
+    , HttpClientModule
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]

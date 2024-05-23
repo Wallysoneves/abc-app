@@ -39,7 +39,7 @@ body {
 
 .mat-toolbar span.active::before {
     height: 80px;
-    width: 80px;
+    width: 130px;
     visibility: visible;
     background-color: #003A69;
 }

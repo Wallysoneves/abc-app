@@ -1,28 +1,40 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container">
-    <!-- CKEditor no lado esquerdo -->
-    <div class="left-side">
-        <ckeditor [editor]="Editor" data="{{dadosCkEditor}}" (change)="onChange($event)"></ckeditor>
-    </div>
+  <div class="left-side">
+    <ckeditor [editor]="Editor" [(ngModel)]="dadosCkEditor" (change)="onChange($event)"></ckeditor>
+  </div>
 
-    <!-- Card no lado direito -->
-    <div class="right-side">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>{{titulo}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content *ngIf="!materiaSelecionada">
-                <div class="materias-container" *ngFor="let materia of materias">
-                    <button class="btn-tema" mat-raised-button (click)="toggleAnos(materia)">{{materia.nome}}</button>
-                </div>
-            </mat-card-content>
+  <div class="right-side">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{titulo}}</mat-card-title>
+      </mat-card-header>
 
-            <mat-card-content *ngIf="materiaSelecionada?.aberto">
-                <div class="materias-container" *ngFor="let anos of materiaSelecionada?.anos">
-                    <button class="btn-tema" mat-raised-button>{{anos}}</button>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+      <mat-card-content *ngIf="titulo === 'Matéria'">
+        <div class="materias-container" *ngFor="let materia of materias">
+          <button class="btn-tema" mat-raised-button (click)="toggleAnos(materia)">{{materia.nome}}</button>
+        </div>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="titulo === 'Série' && materiaSelecionada">
+        <div class="materias-container" *ngFor="let ano of materiaSelecionada.anos">
+          <button class="btn-tema" mat-raised-button (click)="carregarTarefas(materiaSelecionada.id, ano)">{{ano}}</button>
+        </div>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="tarefas.length > 0">
+        <div class="materias-container" *ngFor="let tarefa of tarefas">
+          <div class="iframe-container">
+            <iframe class="iframe-tarefa" [src]="getTarefaUrl(tarefa)" frameborder="0"></iframe>
+            <div class="iframe-overlay" (click)="iframeClicked(tarefa)"></div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer *ngIf="titulo !== 'Matéria'">
+        <button class="btn-voltar" (click)="voltar()">Voltar</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
 </div>
