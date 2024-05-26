@@ -5,14 +5,16 @@ import { EditorComponent } from './pages/editor/editor.component';
 import { TarefasComponent } from './pages/tarefas/tarefas.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
+import { UsuarioNaoAutenticadoGuard } from './providers/guards/usuario-nao-autenticado.guard';
+import { UsuarioAutenticadoGuard } from './providers/guards/usuario-autenticado.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'editor', component: EditorComponent },
-  { path: 'tarefas', component: TarefasComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'cabecalho', component: CabecalhoComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para 'home' por padrão
+  { path: 'login', component: LoginComponent ,canActivate: [UsuarioNaoAutenticadoGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [UsuarioAutenticadoGuard]},
+  { path: 'editor', component: EditorComponent , canActivate: [UsuarioAutenticadoGuard]},
+  { path: 'tarefas', component: TarefasComponent, canActivate: [UsuarioAutenticadoGuard]},
+  {path: 'cabecalho', component: CabecalhoComponent, canActivate: [UsuarioAutenticadoGuard]},
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
  ];
 
 @NgModule({
@@ -20,3 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

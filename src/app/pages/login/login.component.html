@@ -1,27 +1,19 @@
 <div class="container">
-        <app-nav-bar></app-nav-bar>
     
     
-        <div class="main-login">
-            <div class="card-login">
-                <div class="textfield">
-                    <label for="usuario">E-mail</label>
-                    <input type="text" placeholder="E-mail" name="usuario">
-                </div>
-                <div class="textfield">
-                    <label for="senha">Senha</label>
-
+      
+        <form [formGroup]="formLogin" (ngSubmit)="logar()">
     <div class="main-login">
         <div class="card-login">
             <div class="textfield">
                 <label for="usuario">Usuário</label>
-                <input type="text" placeholder="E-mail" name="usuario">
+                <input type="text" placeholder="E-mail" formControlName="email" name="usuario">
             </div>
             <div class="textfield">
                 <label for="senha">Senha</label>
-                <input type="password" placeholder="Senha" name="senha">
+                <input type="password" placeholder="Senha" formControlName="password" name="senha">
             </div>
-            <button class="button-login">Login</button>
+            <button type="submit" class="button-login">Login</button>
             <div class="dividir">
                 <div></div>
                 <span>ou</span>
@@ -30,6 +22,7 @@
             <button class="button-cadastrar" (click)="toggleCadastroForm()">Cadastre-se</button>
         </div>
     </div>
+</form>
 
     <!-- Formulário de Cadastro -->
     <div *ngIf="showCadastroForm" class="overlay">

@@ -20,6 +20,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar'; // Importa MatSnackBarModule
+
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
     , MatInputModule
     , FormsModule
     , HttpClientModule
+    , ReactiveFormsModule
+    , MatSnackBarModule
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]
