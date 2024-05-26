@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Materia } from 'src/app/models/Materia';
@@ -12,6 +12,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  @ViewChild('editor') editorElement: any;
+
 
   dadosCkEditor = ``;
   titulo: string = '';
@@ -20,18 +22,23 @@ export class EditorComponent implements OnInit {
   materias: Materia[] = [];
   materiaSelecionada: Materia | undefined;
   tarefas: string[] = [];
+  htmlContent: string = ``;
   config = {
-    toolbar: [
-      'Cut', 'Copy', 'PasteText', '|',
-      'Undo', 'Redo', '|',
-      'Bold', 'Italic', 'Underline', 'Strike', 'superscript', 'subscript', '|',
-      'Link', 'Unlink', '|',
-      'NumberedList', 'BulletedList', '|',
-      'Outdent', 'Indent', '|',
-      'Blockquote', '|',
-      'ImageUpload', 'MediaEmbed', '|',
-      'Table', '|',
-      'ExportPdf'
+    toolbar: [ 
+      'heading', '|',
+      'fontfamily','fontsize',
+      'alignment',
+      'fontColor','fontBackgroundColor', '|',
+      'bold', 'italic', 'underline', 'custombutton', 'strikethrough', 'subscript', 'superscript','|',
+      'link','|',
+      'outdent','indent','|',
+      'bulletedList','numberedList','|',
+      'code','codeBlock','|',
+      'insertTable','|',
+      'imageUpload','blockQuote','|',
+      'undo','redo','|',
+      'youtube',
+      'mediaEmbed'
     ]
   };
 
@@ -63,20 +70,19 @@ export class EditorComponent implements OnInit {
   }
 
   carregarTarefas(materiaId: number, ano: string): void {
-    this.tarefas = this.tarefaService.getTarefas(materiaId, ano);
     this.titulo = 'Tarefas';
-  }
-
-  getTarefaUrl(tarefa: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(tarefa);
-  }
-
-  carregarTarefa(tarefaPath: string): void {
-    this.tarefaService.getTarefaHtml(tarefaPath).subscribe(html => {
-      this.dadosCkEditor = html;
-    }, error => {
-      console.error('Erro ao carregar a tarefa:', error);
+    let caminhoTarefa = this.tarefaService.getTarefas(materiaId, ano);
+    caminhoTarefa.forEach(e => {
+      this.tarefaService.getTarefaHtml(e).subscribe(html => {
+        this.tarefas.push(html);
+      }, error => {
+        console.error('Erro ao carregar a tarefas:', error);
+      });
     });
+  }
+
+  carregarTarefa(tarefa: string): void {
+      this.dadosCkEditor = tarefa;
   }
 
   iframeClicked(tarefaPath: string): void {

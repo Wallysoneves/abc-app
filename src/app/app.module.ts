@@ -20,6 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
+import { ApresentadorTarefaComponent } from './components/apresentador-tarefa/apresentador-tarefa.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
     TarefasComponent,
     LoginComponent,
     CabecalhoComponent,
+    ApresentadorTarefaComponent,
     
   ],
   imports: [

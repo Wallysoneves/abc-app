@@ -137,8 +137,8 @@ mat-card-content{
 }
 
 :host ::ng-deep .ck-editor__editable_inline {
-    min-height: 85vh;
-    max-height: 85vh;
+    min-height: 80vh;
+    max-height: 80vh;
 }
 
 .ano {
@@ -175,5 +175,37 @@ mat-card-content{
     background: rgba(0, 0, 0, 0); /* transparente */
     cursor: pointer;
   }
+
+  .example-button-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
   
+  .styled-button {
+    background-color: #1976d2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 150px;
+    font-size: 16px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    transition: background-color 0.3s ease;
+  }
   
+  .styled-button:hover {
+    background-color: #125a9c;
+  }
+  
+  .materias-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os itens */
+}
+
+/* Ajuste para os componentes app-apresentador-tarefa */
+.app-apresentador-tarefa {
+    max-width: 90%; /* Largura máxima para responsividade */
+    margin-bottom: 20px; /* Espaçamento vertical entre os componentes */
+}
