@@ -21,8 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar'; // Importa MatSnackBarModule
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApresentadorTarefaComponent } from './components/apresentador-tarefa/apresentador-tarefa.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'; // Importa MatS
     TarefasComponent,
     LoginComponent,
     CabecalhoComponent,
+    ApresentadorTarefaComponent,
     
   ],
   imports: [

@@ -2,8 +2,11 @@
 
 <div class="container">
   <div class="left-side">
-    <ckeditor [editor]="Editor" [(ngModel)]="dadosCkEditor" (change)="onChange($event)"></ckeditor>
-  </div>
+    <ckeditor #editor [editor]="Editor" [(ngModel)]="dadosCkEditor" (change)="onChange($event)"></ckeditor>
+    <div class="example-button-row">
+      <button mat-flat-button class="styled-button">Gravar</button>
+    </div>
+</div>
 
   <div class="right-side">
     <mat-card>
@@ -26,7 +29,7 @@
       <mat-card-content *ngIf="tarefas.length > 0">
         <div class="materias-container" *ngFor="let tarefa of tarefas">
           <div class="iframe-container">
-            <iframe class="iframe-tarefa" [src]="getTarefaUrl(tarefa)" frameborder="0"></iframe>
+            <app-apresentador-tarefa [rawHtml]="tarefa"></app-apresentador-tarefa>
             <div class="iframe-overlay" (click)="iframeClicked(tarefa)"></div>
           </div>
         </div>
