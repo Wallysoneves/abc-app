@@ -20,6 +20,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CabecalhoComponent } from './pages/cabecalho/cabecalho.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApresentadorTarefaComponent } from './components/apresentador-tarefa/apresentador-tarefa.component';
 
 @NgModule({
@@ -47,6 +49,8 @@ import { ApresentadorTarefaComponent } from './components/apresentador-tarefa/ap
     , MatInputModule
     , FormsModule
     , HttpClientModule
+    , ReactiveFormsModule
+    , MatSnackBarModule
   ],
   providers: [MateriaService],
   bootstrap: [AppComponent]

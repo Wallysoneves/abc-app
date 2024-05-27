@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/providers/usuario.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-login',
@@ -7,21 +10,32 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  formLogin: FormGroup ;
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   showCadastroForm = false; // Variável para controlar a exibição do formulário de cadastro
 
   errorMessage = '';
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService,
+    private snackBar: MatSnackBar) { 
+      this.formLogin = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]]
+      });
+    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+ 
 
   updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage = 'You must enter a value';
-    } else if (this.email.hasError('email')) {
-      this.errorMessage = 'Not a valid email';
+    const emailControl = this.formLogin.get('email');
+    if (emailControl?.hasError('required')) {
+      this.errorMessage = 'Você deve inserir um valor';
+    } else if (emailControl?.hasError('email')) {
+      this.errorMessage = 'E-mail inválido';
     } else {
       this.errorMessage = '';
     }
@@ -34,5 +48,17 @@ export class LoginComponent implements OnInit {
   submitCadastroForm() {
     // Lógica para submeter o formulário de cadastro
     console.log('Formulário de cadastro submetido');
+  }
+  logar(){
+    if(this.formLogin.invalid) return;
+    var usuario = this.formLogin.getRawValue() as Usuario;
+    console.log(usuario)
+    this.usuarioService.logar(usuario).subscribe((response) => {
+        if(!response.sucesso){
+          this.snackBar.open('Falha na autenticação', 'Usuário ou senha incorretos.', {
+            duration: 3000
+          });
+        }
+    })
   }
 }
