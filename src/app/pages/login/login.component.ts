@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsuarioService } from 'src/app/providers/usuario.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuario } from 'src/app/models/Usuario';
+import { UsuarioService } from 'src/app/providers/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -10,55 +10,71 @@ import { Usuario } from 'src/app/models/Usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  formLogin: FormGroup ;
+  formLogin: FormGroup;
+  formCadastro: FormGroup;
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  showCadastroForm = false; // Variável para controlar a exibição do formulário de cadastro
-
+  showCadastroForm = false;
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar) { 
-      this.formLogin = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]]
-      });
-    }
+    private snackBar: MatSnackBar
+  ) {
+    this.formLogin = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
 
-  ngOnInit(): void {
+    this.formCadastro = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      login: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      type: ['', [Validators.required]]
+    });
   }
- 
 
-  updateErrorMessage() {
-    const emailControl = this.formLogin.get('email');
-    if (emailControl?.hasError('required')) {
-      this.errorMessage = 'Você deve inserir um valor';
-    } else if (emailControl?.hasError('email')) {
-      this.errorMessage = 'E-mail inválido';
-    } else {
-      this.errorMessage = '';
-    }
-  }
+  ngOnInit(): void {}
 
   toggleCadastroForm() {
-    this.showCadastroForm = !this.showCadastroForm; // Alterna entre mostrar e ocultar o formulário de cadastro
+    this.showCadastroForm = !this.showCadastroForm;
   }
 
   submitCadastroForm() {
-    // Lógica para submeter o formulário de cadastro
-    console.log('Formulário de cadastro submetido');
+    if (this.formCadastro.invalid) return;
+
+    const usuarioCadastro: Usuario = {
+      id: -1, // Valor padrão ou gerado no backend
+      name: this.formCadastro.get('name')?.value || '',
+      login: this.formCadastro.get('login')?.value || '',
+      email: this.formCadastro.get('email')?.value || '',
+      password: this.formCadastro.get('password')?.value || '',
+      type: this.formCadastro.get('type')?.value || ''
+    };
+
+    this.usuarioService.cadastrar(usuarioCadastro).subscribe((response: any) => {
+      if (response.sucesso) {
+        this.snackBar.open('Cadastro realizado com sucesso!', 'Fechar', {
+          duration: 3000
+        });
+      } else {
+        this.snackBar.open('Erro ao cadastrar usuário.', 'Fechar', {
+          duration: 3000
+        });
+      }
+    });
   }
-  logar(){
-    if(this.formLogin.invalid) return;
+
+  logar() {
+    if (this.formLogin.invalid) return;
     var usuario = this.formLogin.getRawValue() as Usuario;
-    console.log(usuario)
-    this.usuarioService.logar(usuario).subscribe((response) => {
-        if(!response.sucesso){
-          this.snackBar.open('Falha na autenticação', 'Usuário ou senha incorretos.', {
-            duration: 3000
-          });
-        }
-    })
+    this.usuarioService.logar(usuario).subscribe((response: any) => {
+      if (!response.sucesso) {
+        this.snackBar.open('Falha na autenticação', 'Usuário ou senha incorretos.', {
+          duration: 3000
+        });
+      }
+    });
   }
 }
