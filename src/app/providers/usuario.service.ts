@@ -31,7 +31,7 @@ export class UsuarioService {
         }),
         catchError(error => {
           console.error('Erro ao tentar fazer login:', error);
-          return of(error.error);
+          return of(error.error.error);
         })
       );
     }

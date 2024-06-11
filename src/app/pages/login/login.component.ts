@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     }
     var usuario = this.formLogin.getRawValue() as Usuario;
     this.usuarioService.logar(usuario).subscribe((response) => {
-        if(!response){
+        if(!response.user){
           this.showTempErrorMessage('Usuário ou senha incorretos.', 5000);
           return;
         }
