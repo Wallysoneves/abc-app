@@ -6,5 +6,6 @@ export interface Usuario{
     password: string,
     login: string,
     type: string,
-    name: string
+    name: string,
+    role: string
 }

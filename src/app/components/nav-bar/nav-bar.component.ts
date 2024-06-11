@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/providers/usuario.service';
 })
 export class NavBarComponent implements OnInit {
   activeIndex: number = 0;
+  desabilitado: boolean = true;
 
   constructor(private usuarioService: UsuarioService) { }
 

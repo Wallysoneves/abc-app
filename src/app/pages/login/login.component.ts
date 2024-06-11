@@ -10,55 +10,79 @@ import { Usuario } from 'src/app/models/Usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  formLogin: FormGroup ;
+  formLogin: FormGroup;
+  formCadastro: FormGroup;
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  showCadastroForm = false; // Variável para controlar a exibição do formulário de cadastro
+  showCadastroForm = false;
 
-  errorMessage = '';
+  tempErrorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar) { 
+              private usuarioService: UsuarioService,
+              private snackBar: MatSnackBar
+            ) { 
+
       this.formLogin = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]]
+        password: ['', Validators.required],
+        login: ['', Validators.required],
       });
+
+      this.formCadastro = this.formBuilder.group({
+        email: ['', Validators.required, , Validators.email],
+        password: ['', Validators.required],
+        name: ['', Validators.required],
+        login: ['', Validators.required]
+      });
+
     }
 
   ngOnInit(): void {
   }
- 
-
-  updateErrorMessage() {
-    const emailControl = this.formLogin.get('email');
-    if (emailControl?.hasError('required')) {
-      this.errorMessage = 'Você deve inserir um valor';
-    } else if (emailControl?.hasError('email')) {
-      this.errorMessage = 'E-mail inválido';
-    } else {
-      this.errorMessage = '';
-    }
-  }
 
   toggleCadastroForm() {
-    this.showCadastroForm = !this.showCadastroForm; // Alterna entre mostrar e ocultar o formulário de cadastro
+    this.showCadastroForm = !this.showCadastroForm;
   }
 
   submitCadastroForm() {
-    // Lógica para submeter o formulário de cadastro
     console.log('Formulário de cadastro submetido');
   }
+
   logar(){
-    if(this.formLogin.invalid) return;
+    if(this.formLogin.invalid) {
+      this.showTempErrorMessage('Informe o login e a senha.');
+      return;
+    }
     var usuario = this.formLogin.getRawValue() as Usuario;
-    console.log(usuario)
     this.usuarioService.logar(usuario).subscribe((response) => {
-        if(!response.sucesso){
-          this.snackBar.open('Falha na autenticação', 'Usuário ou senha incorretos.', {
-            duration: 3000
-          });
+        if(!response){
+          this.showTempErrorMessage('Usuário ou senha incorretos.', 5000);
+          return;
         }
     })
   }
+
+  cadastar() {
+    if(this.formCadastro.invalid) {
+      this.showTempErrorMessage('Favor preencha todos os campos!');
+      return;
+    }
+
+    var usuario = this.formCadastro.getRawValue() as Usuario;
+    console.log(usuario);
+    this.usuarioService.cadastrar(usuario).subscribe((response) => {
+        if (!response.user) {
+          this.showTempErrorMessage(response, 5000);
+          return;
+        }
+    });
+  }
+
+  showTempErrorMessage(message: string, time = 3000) {
+    this.tempErrorMessage = message;
+    
+    // Limpe a mensagem de erro após 3 segundos
+    setTimeout(() => {
+        this.tempErrorMessage = '';
+    }, time);
+}
 }
