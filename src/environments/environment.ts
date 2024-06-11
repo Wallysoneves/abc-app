@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlBase: 'http://localhost:8080'
+  urlBase: 'https://abc-service-ycmu.onrender.com'
 };
 
 /*
