@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { Usuario } from '../models/Usuario';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  urlBase: string = 'http://localhost:8080/auth'
+  urlBase: string = environment.urlBase+'/auth';
 
   constructor(private httpClient: HttpClient,
     private router: Router) { }
