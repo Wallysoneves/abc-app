@@ -66,14 +66,13 @@
     color: black;
     gap: 20px;
     text-transform: uppercase;
-    
-    div {
-        width: 100%;
-        min-width: 70px;
-        height: 1px;
-        background-color: #EE4823;
-    }
-    
+}
+
+.dividir div {
+    width: 100%;
+    min-width: 70px;
+    height: 1px;
+    background-color: #EE4823;
 }
 
 .button-login {
