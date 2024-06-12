@@ -16,11 +16,23 @@ import { Observable } from 'rxjs';
 })
 export class TarefaService {
   private tarefas: { [materiaId: number]: { [ano: string]: string[] } } = {
+    1: {
+      '1º Ano': [
+        './assets/tarefashtml/portugues/1ano/tarefa1.html',
+        './assets/tarefashtml/portugues/1ano/tarefa2.html'
+      ],
+    },
     2: {
       '1º Ano': [
         './assets/tarefashtml/matematica/1ano/tarefa1.html',
         './assets/tarefashtml/matematica/1ano/tarefa2.html',
         './assets/tarefashtml/matematica/1ano/tarefa3.html'
+      ],
+    },
+    3: {
+      '1º Ano': [
+        './assets/tarefashtml/ciencias/1ano/tarefa1.html',
+        './assets/tarefashtml/ciencias/1ano/tarefa2.html'
       ],
     }
   };
@@ -38,14 +50,8 @@ export class TarefaService {
   getAllTarefas() {
     return [
       './assets/tarefashtml/matematica/1ano/tarefa1.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa2.html',
-      './assets/tarefashtml/matematica/1ano/tarefa3.html'
+      './assets/tarefashtml/portugues/1ano/tarefa2.html',
+      './assets/tarefashtml/ciencias/1ano/tarefa2.html'
     ];
   }
 }

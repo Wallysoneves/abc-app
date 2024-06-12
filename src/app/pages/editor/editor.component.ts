@@ -5,6 +5,8 @@ import { Materia } from 'src/app/models/Materia';
 import { MateriaService } from 'src/app/providers/materia.service';
 import { TarefaService } from 'src/app/providers/tarefa.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-editor',
@@ -87,6 +89,27 @@ export class EditorComponent implements OnInit {
 
   iframeClicked(tarefaPath: string): void {
     this.carregarTarefa(tarefaPath);
+  }
+
+  baixarTarefa(): void {
+    const element = document.createElement('div');
+    element.innerHTML = this.dadosCkEditor; // Ajuste para usar 'this.'
+
+    // Usa html2canvas para capturar o conteúdo do elemento
+    html2canvas(element).then((canvas) => {
+      // Cria uma nova instância de jsPDF
+      const doc = new jsPDF();
+
+      // Adiciona o canvas ao documento PDF
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = doc.getImageProperties(imgData);
+      const pdfWidth = doc.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+      // Salva o PDF
+      doc.save("tarefa.pdf");
+    });
   }
 
   voltar() {

@@ -4,6 +4,7 @@
   <div class="left-side">
     <ckeditor #editor [editor]="Editor" [(ngModel)]="dadosCkEditor" (change)="onChange($event)"></ckeditor>
     <div class="example-button-row">
+      <button mat-flat-button class="styled-button" (click)="baixarTarefa()">Exportar</button>
       <button mat-flat-button class="styled-button">Gravar</button>
     </div>
 </div>
