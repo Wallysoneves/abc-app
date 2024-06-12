@@ -7,6 +7,7 @@ import { TarefaService } from 'src/app/providers/tarefa.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
@@ -47,12 +48,19 @@ export class EditorComponent implements OnInit {
   constructor(
     private materiaService: MateriaService,
     private tarefaService: TarefaService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.titulo = 'Matéria';
     this.materias = this.materiaService.getMaterias();
+
+    this.route.queryParams.subscribe(params => {
+      if (params['tarefa']) {
+        this.dadosCkEditor = JSON.parse(params['tarefa']);
+      }
+    });
   }
 
   selecionarMateria(materia: string) {

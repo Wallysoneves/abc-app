@@ -6,7 +6,7 @@
       <div class="slide" *ngFor="let tarefa of tarefas; let i = index" [class.active]="i === currentSlide" [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
         <div class="iframe-container">
           <app-apresentador-tarefa [rawHtml]="tarefa"></app-apresentador-tarefa>
-          <div class="iframe-overlay" (click)="iframeClicked(tarefa)"></div>
+          <div class="iframe-overlay" (click)="iframeClicked(tarefa)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"></div>
         </div>
       </div>
     </div>

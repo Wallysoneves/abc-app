@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Materia } from 'src/app/models/Materia';
 import { MateriaService } from 'src/app/providers/materia.service';
 import { TarefaService } from 'src/app/providers/tarefa.service';
@@ -16,7 +17,8 @@ export class TarefasComponent implements OnInit {
 
   constructor(
     private materiaService: MateriaService,
-    private tarefaService: TarefaService
+    private tarefaService: TarefaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -71,8 +73,9 @@ export class TarefasComponent implements OnInit {
   }
 
   iframeClicked(tarefa: any): void {
-    // Implement the iframe click logic here
+    this.router.navigate(['/editor'], { queryParams: { tarefa: JSON.stringify(tarefa) } });
   }
+  
 
   voltar(): void {
     // Implement the back button logic here
