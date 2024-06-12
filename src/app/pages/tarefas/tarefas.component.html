@@ -1,8 +1,16 @@
 <app-nav-bar></app-nav-bar>
 
-
-<div class="container">
-
-
-
+<div class="container" *ngIf="tarefas.length > 0">
+  <div class="slide-container">
+    <div class="slides">
+      <div class="slide" *ngFor="let tarefa of tarefas; let i = index" [class.active]="i === currentSlide" [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+        <div class="iframe-container">
+          <app-apresentador-tarefa [rawHtml]="tarefa"></app-apresentador-tarefa>
+          <div class="iframe-overlay" (click)="iframeClicked(tarefa)"></div>
+        </div>
+      </div>
+    </div>
+    <button class="nav-button prev" (click)="prevSlide()">&#10094;</button>
+    <button class="nav-button next" (click)="nextSlide()">&#10095;</button>
+  </div>
 </div>

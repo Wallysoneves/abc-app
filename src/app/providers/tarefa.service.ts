@@ -34,4 +34,18 @@ export class TarefaService {
   getTarefaHtml(tarefaPath: string): Observable<string> {
     return this.http.get(tarefaPath, { responseType: 'text' });
   }
+
+  getAllTarefas() {
+    return [
+      './assets/tarefashtml/matematica/1ano/tarefa1.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa2.html',
+      './assets/tarefashtml/matematica/1ano/tarefa3.html'
+    ];
+  }
 }
